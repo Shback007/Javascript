@@ -50,3 +50,12 @@ console.log(addTwo(3,4))
 // const myArr=[2,5,3,7,8]
 
 // myArr.forEach(()=>(a))
+
+switch (key) {
+    case value:
+        
+        break;
+
+    default:
+        break;
+}
