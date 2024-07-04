@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="start">Click Here for Info</button>
+    <div class="card">
+    </div>
+    
+</body>
+
+<script>
+    const card = document.querySelector('.card')
+    const button = document.querySelector(".start")
+    let followers , img;
+    const requestUrl ="https://api.github.com/users/hiteshchoudhary"
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET',requestUrl)
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if (xhr.readyState ===4) {
+            const data= JSON.parse(this.responseText)
+            followers = data.followers
+            img = data.avatar_url
+            button.addEventListener('click',(e)=>{
+                card.innerHTML=
+                `
+                <div>
+                    <img src=${img} style="height:200px; width:200px">
+                </div>
+                <div>
+                    <p>Followers:${followers}</p>
+                </div>
+                `
+            })
+        }
+    }
+    xhr.send()
+</script>
+<style>
+    body{
+        background-color: #212121;
+        color:wheat
+    }
+    .card{
+        display:flex;
+        flex-direction:column;
+        height:400px;
+        width: 400px;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+</html>
